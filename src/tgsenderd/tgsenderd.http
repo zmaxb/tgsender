@@ -1,0 +1,16 @@
+@tgsenderd_HostAddress = http://localhost:7850
+
+###
+GET {{tgsenderd_HostAddress}}/health
+Accept: application/json
+
+###
+
+###
+POST {{tgsenderd_HostAddress}}/tg/send
+Accept: application/json
+Content-Type: text/plain
+
+Hello from tgsenderd!
+
+###

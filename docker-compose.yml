@@ -1,0 +1,22 @@
+services:
+  tgsenderd:
+    build:
+      context: ./src/tgsenderd
+    container_name: tgsenderd
+    restart: unless-stopped
+    ports:
+      - "7850:7850"
+    environment:
+      - TG_TOKEN=${TG_TOKEN}
+      - TG_CHAT_ID=${TG_CHAT_ID}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:7850/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - eden-net
+
+networks:
+  eden-net:
+    driver: bridge
